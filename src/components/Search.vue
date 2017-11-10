@@ -78,13 +78,16 @@ export default {
 			if (this.iter==null){
 				this.results = this.receivedBooks;
 			} else {
+				var item = this.receivedBooks[this.iter];
+        this.searchTerm = item.author;
 				this.results = [];
-				this.results.push(this.receivedBooks[this.iter]);
+				this.results.push(item);
 			}
 			this.toggleDDL = false;
 			this.iter = null;
 		},
 		selectItem: function(item){
+			this.searchTerm = item.author;
 			this.results = [];
 			this.results.push(item);
 			this.toggleDDL = false;
@@ -113,13 +116,16 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .dropdown-menu {
 z-index: 2;
 display: block;
 width: 100%;
 top: 40px;
+}
+
+.dropdown-item {
+  cursor: pointer;
 }
 
 .dropdown-item.v-selected {
